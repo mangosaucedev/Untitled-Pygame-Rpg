@@ -3,7 +3,7 @@ import rendering.textures
 
 from abc import ABC, abstractproperty
 from enum import IntEnum
-from typing import OrderedDict, Tuple
+from typing import OrderedDict, List, Tuple
 
 WIPE_COLOR = (22, 128, 128)
 
@@ -22,15 +22,21 @@ class RenderGroup(pygame.sprite.Group):
     def __init__(self, order: int):
         super().__init__()
         self.order = order
-        self.display_surface = pygame.display.get_surface()
-        
+        self.display_surface: pygame.Surface = pygame.display.get_surface()
+        self.enabled_sprites: List[pygame.sprite.Sprite] = list()
+    
     def draw_group(self):
+        import rendering.camera
+        
+        draw_sprites = [sprite for sprite in self.sprites() if rendering.camera.MAIN.is_within_frustrum(sprite.rect)]
+        
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             
             if isinstance(sprite, RenderObject):
                 sprite.render()
             
-            self.display_surface.blit(sprite.image, sprite.rect)
+            if sprite in draw_sprites:
+                self.display_surface.blit(sprite.image, sprite.rect)
 
 class RenderObject(pygame.sprite.Sprite):
     

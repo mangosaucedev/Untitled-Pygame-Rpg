@@ -11,6 +11,7 @@ class Camera():
         self.display_surface: pygame.Surface = pygame.display.get_surface()
         self.width, self.height = self.display_surface.get_size()
         self.frustrum: pygame.Rect =  pygame.Rect(0, 0, self.width, self.height)
+        self.on_camera_move = None
         
     @property
     def position(self) -> Tuple[int, int]:
@@ -27,6 +28,9 @@ class Camera():
         ox, oy = self.position
         dx, dy = direction
         self.position = (ox + dx, oy + dy)
+    
+    def is_within_frustrum(self, rect: pygame.Rect) -> bool:
+        return rect.colliderect(self.frustrum)
         
 MAIN = Camera()
 
