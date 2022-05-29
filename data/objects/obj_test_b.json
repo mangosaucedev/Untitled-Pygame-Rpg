@@ -1,0 +1,9 @@
+{
+    "name": "test_b",
+    "inherits":  "test_a",
+    "parts": {
+        "renderer": {
+            "texture": "tile_test_b.png"
+        }
+    }
+}

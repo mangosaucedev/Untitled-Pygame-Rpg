@@ -181,6 +181,13 @@ class PartCollection():
                 return True, part
         return False, None
     
-all_game_objects = []
-enabled_game_objects = []
-        
+all_game_objects: List[GameObject] = []
+enabled_game_objects: List[GameObject] = []
+buildable_parts = { }
+
+def buildable_part(alias: str):
+    def f(cls):
+        buildable_parts[alias] = cls
+        print(f"[PART] - Registered part {cls.__name__} as {alias}")
+        return cls
+    return f

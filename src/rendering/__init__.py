@@ -1,4 +1,5 @@
 import pygame
+import rendering.camera
 import rendering.textures
 
 from abc import ABC, abstractproperty
@@ -26,8 +27,6 @@ class RenderGroup(pygame.sprite.Group):
         self.enabled_sprites: List[pygame.sprite.Sprite] = list()
     
     def draw_group(self):
-        import rendering.camera
-        
         draw_sprites = [sprite for sprite in self.sprites() if rendering.camera.MAIN.is_within_frustrum(sprite.rect)]
         
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
@@ -89,7 +88,6 @@ class RenderObject(pygame.sprite.Sprite):
         super().update(self)
         
     def get_rendering_position(self) -> Tuple[int, int]:
-        import rendering.camera
         import world
         
         x, y = self.position

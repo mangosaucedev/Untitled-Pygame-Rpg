@@ -1,5 +1,6 @@
 import pygame
 
+from events import Event
 from typing import Tuple
 
 class Camera():
@@ -11,7 +12,7 @@ class Camera():
         self.display_surface: pygame.Surface = pygame.display.get_surface()
         self.width, self.height = self.display_surface.get_size()
         self.frustrum: pygame.Rect =  pygame.Rect(0, 0, self.width, self.height)
-        self.on_camera_move = None
+        self.on_camera_position_changed: Event = Event()
         
     @property
     def position(self) -> Tuple[int, int]:
@@ -23,6 +24,7 @@ class Camera():
         x, y = position
         self.frustrum.x = x
         self.frustrum.y = y 
+        self.on_camera_position_changed(self.position)
      
     def move(self, direction: Tuple[int, int]):
         ox, oy = self.position

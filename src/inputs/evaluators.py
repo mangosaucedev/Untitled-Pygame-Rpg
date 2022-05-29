@@ -27,4 +27,5 @@ class MovementEvaluator(Evaluator):
         if not direction == (0, 0):
             import rendering.camera
             rendering.camera.MAIN.move(direction)
+            
         return True

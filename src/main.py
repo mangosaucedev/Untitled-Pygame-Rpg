@@ -1,10 +1,9 @@
 import config
-import debug.startup
+import data
 import game_states
 import clock
 import inputs
 import pygame
-import rendering
 import session
 
 SCREEN_WIDTH = 1920
@@ -15,6 +14,8 @@ SESSION = session.GameSession()
 pygame.display.set_caption("Untitled")
 
 def __main__():
+    import debug.startup
+    import rendering
 
     if config.settings["debugMode"]:
        debug.startup.quick_start() 
@@ -22,7 +23,7 @@ def __main__():
     while True:
         
         clock.tick(clock.FPS)
-
+        
         try:
             if not inputs.poll_events():
                 break

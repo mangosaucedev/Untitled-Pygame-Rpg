@@ -1,0 +1,8 @@
+{
+    "name": "test_a",
+    "parts": {
+        "renderer": {
+            "texture": "tile_test.png"
+        }
+    }
+}

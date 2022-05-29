@@ -17,12 +17,12 @@ def get(texture_name: str) -> pygame.Surface:
     return TEXTURE_LIBRARY[texture_name]
         
 def __load(rootdir: str, texture_name: str) -> Optional[pygame.Surface]:
-    import os.path
+    import os
     
-    for item in data.scan_dir(rootdir):
+    for item in os.scandir(rootdir):
         if os.path.isfile(item) and item.name == texture_name:
             return pygame.image.load(item)
-    for item in data.scan_dir(rootdir):
+    for item in os.scandir(rootdir):
         if item.is_dir():
             texture = __load(item, texture_name)
             if texture:
