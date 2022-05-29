@@ -1,6 +1,6 @@
 {
-    "name": "test_b",
-    "inherits":  "test_a",
+    "name": "physical_object",
+    "inherits": "rendered_object",
     "parts": {
         "renderer": {
             "texture_override": "tile_test_b.png"

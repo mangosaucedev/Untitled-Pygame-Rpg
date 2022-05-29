@@ -188,6 +188,5 @@ buildable_parts = { }
 def buildable_part(alias: str):
     def f(cls):
         buildable_parts[alias] = cls
-        print(f"[PART] - Registered part {cls.__name__} as {alias}")
         return cls
     return f

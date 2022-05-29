@@ -34,6 +34,7 @@ def __add_part_data(game_object: GameObject, alias: str, part_data):
     
     if not has:
         part = cls(game_object)
+        game_object.parts.add(part)
     
     for attribute in part_data:
         value = part_data[attribute]

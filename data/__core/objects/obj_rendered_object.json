@@ -1,5 +1,6 @@
 {
-    "name": "test_a",
+    "name": "rendered_object",
+    "inherits": "base_object",
     "parts": {
         "renderer": {
             "texture_override": "tile_test.png"

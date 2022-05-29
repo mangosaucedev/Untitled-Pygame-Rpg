@@ -10,7 +10,7 @@ def quick_start():
     world.go_to_world(world.world_factory.test_world())
     for x in range(12):
         for y in range(6):
-            objects.factory.build("test_a", (x, y))
+            objects.factory.build("physical_object", (x, y))
     for x in range(16):
         for y in range(8):
             rendering.tiles.create_tile((x, y), "tilemap_tile_test.png")

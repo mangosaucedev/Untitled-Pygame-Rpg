@@ -14,6 +14,7 @@ SESSION = session.GameSession()
 pygame.display.set_caption("Untitled")
 
 def __main__():
+    import auto_import
     import debug.startup
     import rendering
 
