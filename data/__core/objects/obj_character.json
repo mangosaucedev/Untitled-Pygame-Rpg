@@ -1,0 +1,10 @@
+{
+    "name": "character",
+    "inherits": "physical_object",
+    "parts": {
+        "movement": {},
+        "renderer": {
+            "texture_override": "tile_test_c.png"
+        }
+    }
+}

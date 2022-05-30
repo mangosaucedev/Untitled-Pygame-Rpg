@@ -32,3 +32,9 @@ class Grid(Generic[T]):
         if self.content[int(x)][int(y)]:
             return True
         return False
+    
+    def __getitem__(self, x: int, y: int) -> T:
+        return get(x, y)
+    
+    def __setitem__(self, x: int, y: int, value):
+        set(x, y, value)

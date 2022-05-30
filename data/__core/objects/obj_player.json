@@ -1,0 +1,9 @@
+{
+    "name": "player",
+    "inherits": "character",
+    "parts": {
+        "renderer": {
+            "texture_override": "tile_test_d.png"
+        }
+    }
+}
