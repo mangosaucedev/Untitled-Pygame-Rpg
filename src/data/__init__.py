@@ -5,8 +5,8 @@ import os
 from enum import Enum
 from typing import Dict, List
 
-TEXTURES_PATH = os.path.abspath(os.path.join(os.pardir, "assets", "textures"))
-DATA_PARENT_PATH = os.path.abspath(os.path.join(os.pardir, "data"))
+TEXTURES_PATH = os.path.abspath(os.path.join("assets", "__core", "textures"))
+DATA_PARENT_PATH = os.path.abspath("data")
 
 class Category(Enum):
     OBJECTS = "objects"

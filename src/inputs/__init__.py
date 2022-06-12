@@ -5,23 +5,25 @@ import main
 import pygame
 
 from abc import ABC
+from autoupdate import auto_updater, Order
+from fsm import Transition, TransitionFromAny
 from typing import Optional
 
 def poll_events() -> bool:
-        
+    import inputs.keys as keys
+    
     events = pygame.event.get()
     
     for event in events:
             
         if event.type == pygame.QUIT:
             return False
-     
-    return handle_keys()
-
-def handle_keys() -> bool:
-    
-    keys_pressed = pygame.key.get_pressed()
-    INPUT_STATE_MACHINE.handle_keys(keys_pressed)
+        if event.type == pygame.KEYDOWN:
+            keys.update_pressed(event)
+        if event.type == pygame.KEYUP:
+            keys.update_released(event)
+            
+    INPUT_STATE_MACHINE.update()
     return True
    
 class InputState(fsm.State, ABC):
@@ -34,26 +36,18 @@ class InputState(fsm.State, ABC):
         super().start()
         debug.log(str.format('[INPUT STATE] - Input state enabled: {0}', type(self).__name__))
 
-    def handle_keys(self, keys_pressed):
-        if self.state:
-            self.state.handle_keys(keys_pressed)
+    def update(self):
+        super().update()
+        for evaluator in self.evaluators:
+            if not evaluator.evaluate():
+                return
     
 class GameplayState(InputState):
         
     def __init__(self):
         super().__init__()
+        self.evaluators.append(inputs.evaluators.QuitEvaluator( ))
         self.evaluators.append(inputs.evaluators.MovementEvaluator())
-        
-    def handle_keys(self, keys_pressed):
-        if keys_pressed[pygame.K_ESCAPE]:
-            main.SESSION.quit_game()
-            return
-        
-        for evaluator in self.evaluators:
-            if not evaluator.evaluate(keys_pressed):
-                return
-        
-        super().handle_keys(keys_pressed)
         
 class InputStateMachine(fsm.StateMachine):
     
@@ -64,10 +58,9 @@ class InputStateMachine(fsm.StateMachine):
     @property
     def input_state(self) -> Optional[InputState]:
         return self.state
-    
-    def handle_keys(self, keys_pressed):
-        if self.input_state:
-            self.input_state.handle_keys(keys_pressed)
-        self.update()
+
+    @auto_updater(order=Order.UPDATE)
+    def update(self):
+        super().update()
             
 INPUT_STATE_MACHINE: InputStateMachine = InputStateMachine()

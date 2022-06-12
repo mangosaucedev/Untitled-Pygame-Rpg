@@ -1,13 +1,13 @@
 import debug
 
 from abc import ABC, abstractmethod
-from game_collections import Grid
+from gamecollections import Grid
 from typing import List, Tuple
 
 TILE_WIDTH = 64
 TILE_HEIGHT = 64
-WORLD_SIZE = 24
-ZONE_SIZE = 64
+WORLD_SIZE = 2
+ZONE_SIZE = 16
 
 class World():
     
@@ -69,6 +69,9 @@ class Zone():
         
         width, height = size
         self.cells: Grid[Cell] = Grid[Cell](width, height)
+        for x in range(width):
+            for y in range(height):
+                self.cells.set(x, y, Cell((x, y)))
         
         self.builders: List[ZoneBuilder] = list()
         self.is_built: bool = False

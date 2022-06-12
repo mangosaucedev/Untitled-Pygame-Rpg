@@ -5,7 +5,7 @@ import os
 from typing import Dict
 
 def __load_config() -> Dict[str, bool]:
-    config_path = os.path.abspath(os.path.join(os.pardir, "config.json"))
+    config_path = os.path.abspath("config.json")
     with open(config_path, "r") as file:
         json_data = file.read()
         debug.log("[CONFIG] - loaded!", debug.DateTimeInfo.FRAME|debug.DateTimeInfo.TIME)

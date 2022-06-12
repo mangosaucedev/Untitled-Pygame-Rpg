@@ -8,9 +8,9 @@ class Grid(Generic[T]):
         self.width: int = width
         self.height: int = height
         self.content = []
-        for x in range(0, int(self.width)):
+        for _ in range(0, int(self.width)):
             content = []
-            for y in range(0, int(self.height)):
+            for _ in range(0, int(self.height)):
                 content.append(None)
             self.content.append(content)
         
@@ -33,8 +33,5 @@ class Grid(Generic[T]):
             return True
         return False
     
-    def __getitem__(self, x: int, y: int) -> T:
-        return get(x, y)
-    
-    def __setitem__(self, x: int, y: int, value):
-        set(x, y, value)
+    def __getitem__(self, x: int) -> list[T]:
+        return self.content[x]

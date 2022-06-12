@@ -1,0 +1,7 @@
+{
+    "name": "wall",
+    "inherits": "physical_object",
+    "parts": {
+        "obstacle": {}
+    }
+}

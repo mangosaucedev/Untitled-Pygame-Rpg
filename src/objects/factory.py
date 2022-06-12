@@ -34,7 +34,7 @@ def __add_part_data(game_object: GameObject, alias: str, part_data):
     
     if not has:
         part = cls(game_object)
-        game_object.parts.add(part)
+        game_object.parts += part
     
     for attribute in part_data:
         value = part_data[attribute]
@@ -52,7 +52,7 @@ def base_object(position: Tuple[int, int] = (0, 0)) -> GameObject:
 def base_rendered_object(position: Tuple[int, int] = (0, 0)) -> GameObject:
     import rendering.textures
     
-    from objects.parts_rendering import Renderer
+    from objects.partsrendering import Renderer
     
     game_object: GameObject = base_object(position)
     

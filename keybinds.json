@@ -1,0 +1,17 @@
+{
+    "SUBMIT": "K_SPACE, , ,K_RETURN",
+    "CANCEL": "K_ESCAPE",
+    "MOVE_N": "K_KP8",
+    "MOVE_S": "K_KP2",
+    "MOVE_W": "K_KP4",
+    "MOVE_E": "K_KP6",
+    "MOVE_NW": "K_KP7",
+    "MOVE_NE": "K_KP9",
+    "MOVE_SW": "K_KP1",
+    "MOVE_SE": "K_KP3",
+    "MOVE_N_ALT": "K_UP",
+    "MOVE_S_ALT": "K_DOWN",
+    "MOVE_W_ALT": "K_LEFT",
+    "MOVE_E_ALT": "K_RIGHT",
+    "MOVE_PASS": "K_KP5"
+}

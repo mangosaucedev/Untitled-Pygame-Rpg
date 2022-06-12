@@ -6,7 +6,7 @@ from abc import ABC, abstractproperty
 from enum import IntEnum
 from typing import OrderedDict, List, Tuple
 
-WIPE_COLOR = (22, 128, 128)
+WIPE_COLOR = (0, 1, 2)
 
 class RenderOrder(IntEnum):
     TILES = 0

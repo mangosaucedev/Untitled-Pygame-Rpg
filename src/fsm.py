@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import List, Optional
+from typing import Callable, List
 
 class StateMachine(ABC):
     
@@ -10,6 +10,7 @@ class StateMachine(ABC):
     
     def update(self):
         if self.__update_transitions_from_any() or self.__update_transitions():
+            self.update()
             return
         if self.state:
             self.state.update()
@@ -49,9 +50,9 @@ class State(StateMachine, ABC):
   
 class TransitionFromAny():
     
-    def __init__(self, func, end = None):
-        self.end: Optional[State] = end
-        self.func = func
+    def __init__(self, func: Callable[[],bool], end = None):
+        self.end: State = end
+        self.func: Callable[[],bool] = func
         
     def can_transition(self) -> bool:
         can_transition: bool = self.func()
@@ -59,7 +60,7 @@ class TransitionFromAny():
     
 class Transition(TransitionFromAny):
     
-    def __init__(self, func, start = None, end = None):
-        super().__init__(end, func)
+    def __init__(self, func: Callable[[], bool], start: State, end: State):
+        super().__init__(func, end)
         
-        self.start: Optional[State] = start
+        self.start: State = start

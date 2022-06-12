@@ -4,7 +4,7 @@ import json
 import os
 
 def __auto_import():
-    with open(os.path.join(os.pardir, "auto_import.json")) as file:
+    with open("autoimport.json") as file:
         imports = json.load(file)
         i = 0
         for module in imports:
